@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class CustomFlatButton extends StatelessWidget {
+  // Property types
+  final String label;
+  final VoidCallback onPressed;
+
+  // Constructor - all properties must be passed
+  const CustomFlatButton(
+      {Key? key, required this.label, required this.onPressed})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        // Match width of parent element
+        width: double.infinity,
+        // Make sure margin on sides so distance from edge
+        margin: const EdgeInsets.all(20),
+        // There are many types of buttons idk
+        child: FloatingActionButton.extended(
+          // When pressed, call onPressed function
+          onPressed: onPressed,
+          // Text inside button
+          label: Text(
+            label,
+            style:
+                GoogleFonts.mulish(fontSize: 18, fontWeight: FontWeight.w800),
+          ),
+          // Floating action button is raised with shadow by default
+          elevation: 0,
+          // Specifically told to use background/overlay colors with specific values but
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Colors.white,
+        ));
+  }
+}
