@@ -14,10 +14,10 @@ class CustomFlatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // Match width of parent element
+        // Match width of parent element (full)
         width: double.infinity,
         // Make sure margin on sides so distance from edge
-        margin: const EdgeInsets.all(20),
+        margin: const EdgeInsets.fromLTRB(20, 50, 20, 50),
         // There are many types of buttons idk
         child: FloatingActionButton.extended(
           // When pressed, call onPressed function
@@ -25,14 +25,15 @@ class CustomFlatButton extends StatelessWidget {
           // Text inside button
           label: Text(
             label,
-            style:
-                GoogleFonts.mulish(fontSize: 18, fontWeight: FontWeight.w800),
+            // Theme from defined button textTheme in main.dart with modifications added
+            style: Theme.of(context).textTheme.button!.copyWith(
+                color: Theme.of(context).primaryColorLight,
+                fontFamily: GoogleFonts.mulish().fontFamily),
           ),
           // Floating action button is raised with shadow by default
           elevation: 0,
           // Specifically told to use background/overlay colors with specific values but
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          foregroundColor: Colors.white,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
   }
 }
