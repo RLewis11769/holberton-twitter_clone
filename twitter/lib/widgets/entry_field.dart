@@ -30,7 +30,7 @@ class CustomEntryField extends StatelessWidget {
             filled: true,
             fillColor: Colors.grey[200],
             // Hint/placeholder text
-            hintStyle: const TextStyle(color: Colors.grey, fontSize: 20),
+            hintStyle: TextStyle(color: Theme.of(context).primaryColorLight, fontSize: 20),
             // Padding around text itself within field
             contentPadding: const EdgeInsets.fromLTRB(30, 15, 0, 15),
             // Border around field

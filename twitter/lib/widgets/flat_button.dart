@@ -27,7 +27,7 @@ class CustomFlatButton extends StatelessWidget {
             label,
             // Theme from defined button textTheme in main.dart with modifications added
             style: Theme.of(context).textTheme.button!.copyWith(
-                color: Theme.of(context).primaryColorLight,
+                color: Colors.white,
                 fontFamily: GoogleFonts.mulish().fontFamily),
           ),
           // Floating action button is raised with shadow by default

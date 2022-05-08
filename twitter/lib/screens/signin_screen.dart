@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
 import './signup_screen.dart';
+import './forgot_password_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
   @override
   // Create stateful widget including build context
-  // Not mounted yet - just calls build
+  // Not mounted yet - just calls build with state encapsulated
   _SignIn createState() => _SignIn();
 }
 
@@ -71,27 +72,35 @@ class _SignIn extends State<SignIn> {
           label: 'Submit',
         ),
         GestureDetector(
-            // On tap, navigate to sign up screen
+            // On tap of text, navigate to sign up screen
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const SignUp()));
             },
             child: Text(
               'Sign up',
-              // Default theme text style, but color changed from gray
+              // Default theme text style, but color changed from black
               style: Theme.of(context)
                   .textTheme
                   .bodyText1!
                   .copyWith(color: Theme.of(context).primaryColor),
             )),
-        Text(
-          'Forgot password?',
-          // Default theme text style, but color changed from gray
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1!
-              .copyWith(color: Theme.of(context).primaryColor),
-        ),
+        GestureDetector(
+            // On tap of text, navigate to forget password screen
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ForgetPassword()));
+            },
+            child: Text(
+              'Forget password?',
+              // Default theme text style, but color changed from black
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(color: Theme.of(context).primaryColor),
+            )),
       ],
     ))));
   }

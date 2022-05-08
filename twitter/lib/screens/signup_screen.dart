@@ -7,7 +7,7 @@ class SignUp extends StatefulWidget {
 
   @override
   // Create stateful widget including build context
-  // Not mounted yet - just calls build
+  // Not mounted yet - just calls build with state encapsulated
   _SignUp createState() => _SignUp();
 }
 

@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
       title: 'Twitter Clone',
       // Custom theme that overrides/extends default theme
       theme: ThemeData(
-        primaryColor: Colors.amber,
+        primaryColor: Colors.blue,
         primaryColorDark: Colors.black,
-        primaryColorLight: Colors.white,
+        primaryColorLight: Colors.grey,
         textTheme: const TextTheme(
           headline4: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
           bodyText1: TextStyle(fontSize: 18, height: 2.5),
