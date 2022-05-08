@@ -12,21 +12,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Styling using Material App
     return MaterialApp(
-      // Usually wrap text in Text widget? Might be updated syntax
-      title: 'Flutter Demo',
+      title: 'Twitter Clone',
+      // Custom theme that overrides/extends default theme
       theme: ThemeData(
-        primaryColor: Colors.green,
+        primaryColor: Colors.amber,
         primaryColorDark: Colors.black,
         primaryColorLight: Colors.white,
-        // fontFamily: GoogleFonts.mulish().fontFamily,
         textTheme: const TextTheme(
-          // caption: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           headline4: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
           bodyText1: TextStyle(fontSize: 18, height: 2.5),
           button: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
         ),
       ),
-      // Home page defined by HomeScreen widget
+      // Home page defined by SignIn widget
       home: const SignIn(),
     );
   }

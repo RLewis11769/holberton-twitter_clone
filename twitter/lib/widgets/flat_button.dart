@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomFlatButton extends StatelessWidget {
-  // Property types
+  // Define property types
   final String label;
   final VoidCallback onPressed;
 
@@ -17,7 +17,7 @@ class CustomFlatButton extends StatelessWidget {
         // Match width of parent element (full)
         width: double.infinity,
         // Make sure margin on sides so distance from edge
-        margin: const EdgeInsets.fromLTRB(20, 50, 20, 50),
+        margin: const EdgeInsets.fromLTRB(20, 40, 20, 50),
         // There are many types of buttons idk
         child: FloatingActionButton.extended(
           // When pressed, call onPressed function

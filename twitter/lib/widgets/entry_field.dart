@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomEntryField extends StatelessWidget {
-  // Property types
+  // Define property types
   final String hint;
   final TextEditingController controller;
   final bool isPassword;
@@ -41,7 +41,7 @@ class CustomEntryField extends StatelessWidget {
             // Border around field when focused
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(color: Colors.blue, width: 2),
+              borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
             ),
           ),
         ),
