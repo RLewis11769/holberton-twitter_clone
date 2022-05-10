@@ -47,6 +47,18 @@ class _SignUp extends State<SignUp> {
     // Similar to render in React- called when updated, returns widget
     // Rebuilds widget when state (name, email, password, confirm) changes and outdates updated values
     return Scaffold(
+        // AppBar contains back button by default
+        // Override default color but keep functionality
+        appBar: AppBar(
+          leading: BackButton(
+            color: Theme.of(context).primaryColor,
+          ),
+          title: const Text('Forget Password'),
+          backgroundColor: Colors.transparent,
+          foregroundColor: Theme.of(context).primaryColorDark,
+          elevation: 0,
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
             child: Container(
                 // // Specifically asked to give height of 88 but overflows container

@@ -40,6 +40,9 @@ class _ForgetPassword extends State<ForgetPassword> {
       // AppBar contains back button by default
       // Override default color but keep functionality
         appBar: AppBar(
+          leading: BackButton(
+            color: Theme.of(context).primaryColor,
+          ),
           title: const Text('Forget Password'),
           backgroundColor: Colors.transparent,
           foregroundColor: Theme.of(context).primaryColorDark,
@@ -68,7 +71,7 @@ class _ForgetPassword extends State<ForgetPassword> {
           // Default theme text style, but color changed from black
           style: Theme.of(context)
               .textTheme
-              .bodyText1!.copyWith(color: Theme.of(context).primaryColorLight, height: 1.25),
+              .bodyText2!.copyWith(color: Theme.of(context).primaryColorLight, height: 1.25),
         ),
             CustomEntryField(
               hint: 'Enter email',

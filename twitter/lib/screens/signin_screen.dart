@@ -82,7 +82,7 @@ class _SignIn extends State<SignIn> {
               // Default theme text style, but color changed from black
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1!
+                  .bodyText2!
                   .copyWith(color: Theme.of(context).primaryColor),
             )),
         GestureDetector(
@@ -98,7 +98,7 @@ class _SignIn extends State<SignIn> {
               // Default theme text style, but color changed from black
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1!
+                  .bodyText2!
                   .copyWith(color: Theme.of(context).primaryColor),
             )),
       ],
