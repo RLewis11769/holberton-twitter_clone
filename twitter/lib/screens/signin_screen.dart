@@ -3,6 +3,7 @@ import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
 import './signup_screen.dart';
 import './forgot_password_screen.dart';
+import './home_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -68,8 +69,13 @@ class _SignIn extends State<SignIn> {
           isPassword: true,
         ),
         CustomFlatButton(
-          onPressed: initState,
           label: 'Submit',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
         ),
         GestureDetector(
             // On tap of text, navigate to sign up screen

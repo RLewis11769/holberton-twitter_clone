@@ -79,7 +79,7 @@ class _ForgetPassword extends State<ForgetPassword> {
               isPassword: false,
             ),
             CustomFlatButton(
-              onPressed: initState,
+              onPressed: () {},
               label: 'Sign up',
             ),
           ],

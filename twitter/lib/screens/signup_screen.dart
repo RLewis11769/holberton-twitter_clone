@@ -53,7 +53,7 @@ class _SignUp extends State<SignUp> {
           leading: BackButton(
             color: Theme.of(context).primaryColor,
           ),
-          title: const Text('Forget Password'),
+          title: const Text('Sign Up'),
           backgroundColor: Colors.transparent,
           foregroundColor: Theme.of(context).primaryColorDark,
           elevation: 0,
@@ -69,17 +69,8 @@ class _SignUp extends State<SignUp> {
                     child: Column(
                       children: [
                         Container(
-                            margin: const EdgeInsets.fromLTRB(0, 35, 0, 100),
-                            child: Text(
-                              'Sign Up',
-                              // Default theme text style, but theme changed from gray
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(
-                                      color:
-                                          Theme.of(context).primaryColorDark),
-                            )),
+                            margin: const EdgeInsets.only(top: 100)
+                        ),
                         CustomEntryField(
                           hint: 'Enter name',
                           controller: _nameController,
@@ -101,7 +92,7 @@ class _SignUp extends State<SignUp> {
                           isPassword: true,
                         ),
                         CustomFlatButton(
-                          onPressed: initState,
+                          onPressed: () {},
                           label: 'Sign up',
                         ),
                       ],
