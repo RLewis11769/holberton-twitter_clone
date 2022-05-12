@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import '../screens/home_screen.dart';
-import '../screens/signin_screen.dart';
+import '../screens/home_screen.dart';
+// import '../screens/signin_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
           button: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
         ),
       ),
-      // Home page defined by SignIn widget
-      home: const SignIn(),
+      // Home page defined by HomeScreen widget
+      home: const HomeScreen(),
     );
   }
 }
