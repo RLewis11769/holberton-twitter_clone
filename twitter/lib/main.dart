@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               headline6: TextStyle(fontSize: 20),
               subtitle1: TextStyle(fontSize: 20),
               bodyText1: TextStyle(fontSize: 25),
-              bodyText2: TextStyle(fontSize: 18, height: 2.5),
+              bodyText2: TextStyle(fontSize: 18),
               button: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
             ),
           ),

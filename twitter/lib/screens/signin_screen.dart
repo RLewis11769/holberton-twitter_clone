@@ -89,7 +89,7 @@ class _SignIn extends State<SignIn> {
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: Theme.of(context).primaryColor),
+                  .copyWith(color: Theme.of(context).primaryColor, height: 2.5),
             )),
         GestureDetector(
             // On tap of text, navigate to forget password screen
@@ -105,7 +105,7 @@ class _SignIn extends State<SignIn> {
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: Theme.of(context).primaryColor),
+                  .copyWith(color: Theme.of(context).primaryColor, height: 2.5),
             )),
       ],
     ))));
