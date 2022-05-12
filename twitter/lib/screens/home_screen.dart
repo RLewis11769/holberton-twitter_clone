@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/side_bar_menu.dart';
+import '../widgets/bottom_bar_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Home'),
       ),
       drawer: const SideBarMenu(),
+      bottomNavigationBar: const BottomMenuBar(),
     );
   }
 }
