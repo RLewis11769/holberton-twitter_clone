@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         title: const Text('Home'),
       ),
-      body: PostWidget(
+      body: const PostWidget(
         name: 'Shadow',
         username: 'themange',
         imgUrl:

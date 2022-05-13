@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/users_search_results_widget.dart';
 import '../widgets/bottom_bar_menu.dart';
-import '../widgets/entry_field.dart';
 import '../assets/user_list.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -18,7 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
+          children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -77,9 +76,6 @@ class _SearchScreenState extends State<SearchScreen> {
           ],
         ),
       ),
-      // ],
-      // )
-      // ),
       bottomNavigationBar: const BottomMenuBar(),
     );
   }
