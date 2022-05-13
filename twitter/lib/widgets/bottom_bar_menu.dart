@@ -17,8 +17,8 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-      child: Row(
+        margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             GestureDetector(
@@ -31,7 +31,7 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
                   );
                 },
                 child: Icon(
-                  Icons.home,
+                  Icons.home_outlined,
                   color: Provider.of<AppState>(context).pageIndex == 0
                       ? Theme.of(context).primaryColor
                       : Theme.of(context).primaryColorLight,

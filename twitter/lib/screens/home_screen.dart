@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/side_bar_menu.dart';
 import '../widgets/bottom_bar_menu.dart';
+import '../widgets/users_search_results_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

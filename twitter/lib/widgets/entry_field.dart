@@ -30,7 +30,8 @@ class CustomEntryField extends StatelessWidget {
             filled: true,
             fillColor: Colors.grey[200],
             // Hint/placeholder text
-            hintStyle: TextStyle(color: Theme.of(context).primaryColorLight, fontSize: 20),
+            hintStyle: TextStyle(
+                color: Theme.of(context).primaryColorLight, fontSize: 20),
             // Padding around text itself within field
             contentPadding: const EdgeInsets.fromLTRB(30, 15, 0, 15),
             // Border around field
@@ -41,7 +42,8 @@ class CustomEntryField extends StatelessWidget {
             // Border around field when focused
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+              borderSide:
+                  BorderSide(color: Theme.of(context).primaryColor, width: 2),
             ),
           ),
         ),

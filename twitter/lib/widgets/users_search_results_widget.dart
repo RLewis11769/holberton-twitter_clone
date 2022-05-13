@@ -4,28 +4,28 @@ class UsersSearchResultsWidget extends StatelessWidget {
   // Define property types
   final String name;
   final String username;
-  String imgUrl = '../assets/username.png';
+  final String imgUrl;
+  final bool isVerified;
 
-  UsersSearchResultsWidget(
+  const UsersSearchResultsWidget(
       {Key? key,
       required this.name,
       required this.username,
-      required this.imgUrl})
+      required this.imgUrl,
+      required this.isVerified})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        // Only takes up 100% of its container - used for centering vertically and horizontally
-        heightFactor: 1,
-        child: Row(
-            // Minimum width of the container - allows for centering
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://www.clipartmax.com/png/full/5-55403_blank-avatar-profile-pic-icon-female.png'),
-                radius: 30,
+    return Container(
+        padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
+        child: Center(
+            // Only takes up 100% of its container - used for centering vertically and horizontally
+            heightFactor: 1,
+            child: Row(children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(imgUrl),
+                radius: 25,
               ),
               Container(
                 padding: const EdgeInsets.only(left: 20),
@@ -35,17 +35,25 @@ class UsersSearchResultsWidget extends StatelessWidget {
                   // Overrides default center for text align left
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(name,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6!
-                            .copyWith(fontWeight: FontWeight.bold)),
+                    Row(children: [
+                      Text('$name ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6!
+                              .copyWith(fontWeight: FontWeight.bold)),
+                      if (isVerified)
+                        Icon(
+                          Icons.check_circle,
+                          color: Theme.of(context).primaryColor,
+                          size: 15,
+                        ),
+                    ]),
                     Text('@$username',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             color: Theme.of(context).primaryColorLight))
                   ],
                 ),
               )
-            ]));
+            ])));
   }
 }
