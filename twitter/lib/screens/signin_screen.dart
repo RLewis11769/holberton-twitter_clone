@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/app_state.dart';
 import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
 import './signup_screen.dart';
@@ -71,6 +73,9 @@ class _SignIn extends State<SignIn> {
         CustomFlatButton(
           label: 'Submit',
           onPressed: () {
+            // Set state to
+            Provider.of<AppState>(context, listen: false).setpageIndex = 0;
+            // Navigate to home screen
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const HomeScreen()),

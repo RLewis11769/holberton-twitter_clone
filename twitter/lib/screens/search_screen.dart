@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/users_search_results_widget.dart';
 import '../widgets/bottom_bar_menu.dart';
 import '../assets/user_list.dart';
+import './signin_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -54,10 +55,19 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 )),
-                Container(
+                GestureDetector(
+                    // On tap of text, navigate to sign up screen
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()));
+                    },
+                    child: Container(
                   padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
                   child: const Icon(Icons.settings_outlined,
                       color: Colors.blue, size: 30),
+                ),
                 ),
               ],
             ),

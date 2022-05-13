@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './signin_screen.dart';
 import '../widgets/bottom_bar_menu.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -34,8 +35,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         .headline4!
                         .copyWith(color: Theme.of(context).primaryColorDark),
                   )),
-                  const Icon(Icons.settings_outlined,
-                      color: Colors.blue, size: 30),
+                  GestureDetector(
+                    // On tap of text, navigate to sign up screen
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()));
+                    },
+                    child: const Icon(Icons.settings_outlined,
+                        color: Colors.blue, size: 30),
+                  ),
                 ],
               ),
             ])),
