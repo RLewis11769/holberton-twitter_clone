@@ -18,6 +18,9 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        // Custom Row widtget with near-identical children
+        // There is BottomNavigationBar widget
+        // Couldn't get it to work but Jay did! Very cool, check it out
         margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,7 +31,8 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
                 // Consumer is syntactic sugar for Provider.of - is using provider/consumer to get data from app state
                 // Require listen: false to avoid infinite loop when listening outside of this widget
                 onTap: () {
-                  Provider.of<AppState>(context, listen: false).setpageIndex = 0;
+                  Provider.of<AppState>(context, listen: false).setpageIndex =
+                      0;
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -43,7 +47,8 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
                 )),
             GestureDetector(
                 onTap: () {
-                  Provider.of<AppState>(context, listen: false).setpageIndex = 1;
+                  Provider.of<AppState>(context, listen: false).setpageIndex =
+                      1;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -58,7 +63,8 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
                 )),
             GestureDetector(
                 onTap: () {
-                  Provider.of<AppState>(context, listen: false).setpageIndex = 2;
+                  Provider.of<AppState>(context, listen: false).setpageIndex =
+                      2;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -73,7 +79,8 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
                 )),
             GestureDetector(
                 onTap: () {
-                  Provider.of<AppState>(context, listen: false).setpageIndex = 3;
+                  Provider.of<AppState>(context, listen: false).setpageIndex =
+                      3;
                   Navigator.push(
                     context,
                     MaterialPageRoute(

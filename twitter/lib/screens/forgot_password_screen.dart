@@ -38,8 +38,8 @@ class _ForgetPassword extends State<ForgetPassword> {
     // Similar to render in React- called when updated, returns widget
     // Rebuilds widget when state (name, email, password, confirm) changes and outdates updated values
     return Scaffold(
-      // AppBar contains back button by default
-      // Override default color but keep functionality
+        // AppBar contains back button by default
+        // Override default color but keep functionality
         appBar: AppBar(
           leading: BackButton(
             color: Theme.of(context).primaryColor,
@@ -52,9 +52,9 @@ class _ForgetPassword extends State<ForgetPassword> {
         ),
         body: SingleChildScrollView(
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
                 margin: const EdgeInsets.fromLTRB(0, 150, 0, 25),
@@ -66,14 +66,13 @@ class _ForgetPassword extends State<ForgetPassword> {
                       .headline4!
                       .copyWith(color: Theme.of(context).primaryColorDark),
                 )),
-                Text(
-          'Enter your email address below to receive password reset instructions.',
-          textAlign: TextAlign.center,
-          // Default theme text style, but color changed from black
-          style: Theme.of(context)
-              .textTheme
-              .bodyText2!.copyWith(color: Theme.of(context).primaryColorLight, height: 1.25),
-        ),
+            Text(
+              'Enter your email address below to receive password reset instructions.',
+              textAlign: TextAlign.center,
+              // Default theme text style, but color changed from black
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  color: Theme.of(context).primaryColorLight, height: 1.25),
+            ),
             CustomEntryField(
               hint: 'Enter email',
               controller: _emailController,
@@ -84,7 +83,6 @@ class _ForgetPassword extends State<ForgetPassword> {
               label: 'Sign up',
             ),
           ],
-        )))
-        );
+        ))));
   }
 }

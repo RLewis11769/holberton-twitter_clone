@@ -28,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
         imgUrl:
             'https://static.wikia.nocookie.net/blossom/images/e/ed/Mange.png/revision/latest?cb=20140731004033',
         isVerified: true,
-        postText: 'I have studied many philosophers and many cats. The wisdom of cats is infinitely superior. #HippolyteTaine',
+        postText:
+            'I have studied many philosophers and many cats. The wisdom of cats is infinitely superior. #HippolyteTaine',
       ),
       // HomeScreen is only screen to have side menu drawer
       drawer: const SideBarMenu(),

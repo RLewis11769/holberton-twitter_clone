@@ -69,9 +69,7 @@ class _SignUp extends State<SignUp> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        Container(
-                            margin: const EdgeInsets.only(top: 100)
-                        ),
+                        Container(margin: const EdgeInsets.only(top: 100)),
                         CustomEntryField(
                           hint: 'Enter name',
                           controller: _nameController,

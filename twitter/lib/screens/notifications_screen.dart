@@ -47,8 +47,8 @@ class NotificationsScreen extends StatelessWidget {
                 ],
               ),
             ])),
-            // Filler info while no notifications
-            // Needs to be flexible so text can be wrapped
+        // Filler info while no notifications
+        // Needs to be flexible so text can be wrapped
         Flexible(
           child: Container(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/users_search_results_widget.dart';
 import '../widgets/bottom_bar_menu.dart';
-import '../assets/user_list.dart';
 import './signin_screen.dart';
+import '../assets/user_list.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class SearchScreen extends StatelessWidget {
                           'http://static.wikia.nocookie.net/blossom/images/e/ed/Mange.png/revision/latest?cb=20140731004033'),
                       radius: 20,
                     )),
-                    // Near-identical to entry_field but with no props
+                // Near-identical to entry_field but with no props
                 Flexible(
                     child: TextField(
                   decoration: InputDecoration(
@@ -54,28 +54,28 @@ class SearchScreen extends StatelessWidget {
                   ),
                 )),
                 GestureDetector(
-                    // On tap of text, navigate to sign up screen as on notifications_screen and chats_screen
-                    // Not asked to do this but I wanted it - no other way to get to SignIn if home is HomeScreen
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignIn()));
-                    },
-                    child: Container(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
-                  child: const Icon(Icons.settings_outlined,
-                      color: Colors.blue, size: 30),
-                ),
+                  // On tap of text, navigate to sign up screen as on notifications_screen and chats_screen
+                  // Not asked to do this but I wanted it - no other way to get to SignIn if home is HomeScreen
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignIn()));
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
+                    child: const Icon(Icons.settings_outlined,
+                        color: Colors.blue, size: 30),
+                  ),
                 ),
               ],
             ),
             Expanded(
               // ListView builder to display search results from userList file
-              // 
+              //
               child: ListView.builder(
-                // itemCount required to be able to build list
-                // If itemBuilder has static info, makes identical number of items in itemCount
+                  // itemCount required to be able to build list
+                  // If itemBuilder has static info, makes identical number of items in itemCount
                   itemCount: userList.length,
                   // context is BuildContext instance that lets builder know where it is in Widget Tree
                   // Required information used in background
