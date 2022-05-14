@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import './signin_screen.dart';
 import '../widgets/bottom_bar_menu.dart';
 
-class NotificationsScreen extends StatefulWidget {
+class NotificationsScreen extends StatelessWidget {
+  // No props needed
   const NotificationsScreen({Key? key}) : super(key: key);
 
-  @override
-  State<NotificationsScreen> createState() => _NotificationsScreenState();
-}
-
-class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +14,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         Container(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: Column(children: [
+              // Always stays the same - profile image, title, settings icon
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,6 +34,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   )),
                   GestureDetector(
                     // On tap of text, navigate to sign up screen
+                    // Not asked to do this but I wanted it - no other way to get to SignIn if home is HomeScreen
                     onTap: () {
                       Navigator.push(
                           context,
@@ -49,6 +47,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ],
               ),
             ])),
+            // Filler info while no notifications
+            // Needs to be flexible so text can be wrapped
         Flexible(
           child: Container(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -75,6 +75,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
         ),
       ])),
+      // Always includes bottom nav bar
       bottomNavigationBar: const BottomMenuBar(),
     );
   }

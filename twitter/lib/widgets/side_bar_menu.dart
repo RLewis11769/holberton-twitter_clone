@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 
-class SideBarMenu extends StatefulWidget {
+class SideBarMenu extends StatelessWidget {
   const SideBarMenu({Key? key}) : super(key: key);
 
   @override
-  State<SideBarMenu> createState() => _SideBarMenuState();
-}
-
-class _SideBarMenuState extends State<SideBarMenu> {
-  @override
   Widget build(BuildContext context) {
     return Drawer(
+      // Traditional structure of Drawer (there is UserAccountsDrawerHeader but not quite right)
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           SizedBox(
+            // Want DrawerHeader to be 275 rather than default 200 I think
             height: 275,
             child: DrawerHeader(
+              // Separate user info from navigation (don't think this is necessary but better org)
+              // Besides DrawerHeader, everything else is ListTile
               child: Column(
+                  // Override default center crossAxisAlignment to text align left
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  // Default user image and all other info hardcoded
                   children: [
                     const CircleAvatar(
                       backgroundImage: NetworkImage(
@@ -46,6 +47,7 @@ class _SideBarMenuState extends State<SideBarMenu> {
                   ]),
             ),
           ),
+          // These are the actual menu items - ideally they should be links but onTap does nothing
           ListTile(
             leading: const Icon(Icons.person),
             iconColor: Theme.of(context).primaryColorLight,

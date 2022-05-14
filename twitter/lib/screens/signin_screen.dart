@@ -8,6 +8,7 @@ import './forgot_password_screen.dart';
 import './home_screen.dart';
 
 class SignIn extends StatefulWidget {
+  // Not using state yet but will in future?
   const SignIn({Key? key}) : super(key: key);
 
   @override

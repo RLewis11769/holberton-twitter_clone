@@ -3,6 +3,7 @@ import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
 
 class SignUp extends StatefulWidget {
+  // Not using state yet but will in future?
   const SignUp({Key? key}) : super(key: key);
 
   @override

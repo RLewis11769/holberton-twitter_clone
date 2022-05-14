@@ -7,6 +7,7 @@ class UsersSearchResultsWidget extends StatelessWidget {
   final String imgUrl;
   final bool isVerified;
 
+// Constructor - all properties must be passed
   const UsersSearchResultsWidget(
       {Key? key,
       required this.name,
@@ -20,7 +21,8 @@ class UsersSearchResultsWidget extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
         child: Center(
-            // Only takes up 100% of its container - used for centering vertically and horizontally
+            // Center centers horizontally and vertically by default
+            // Not centered vertically with heightFactor - Only takes up 100% of container height
             heightFactor: 1,
             child: Row(children: [
               CircleAvatar(
@@ -30,7 +32,7 @@ class UsersSearchResultsWidget extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(left: 20),
                 child: Column(
-                  // Works with height factor to center within container
+                  // mainAxisSize works with height factor to center within container
                   mainAxisSize: MainAxisSize.min,
                   // Overrides default center for text align left
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,6 +43,7 @@ class UsersSearchResultsWidget extends StatelessWidget {
                               .textTheme
                               .headline6!
                               .copyWith(fontWeight: FontWeight.bold)),
+                      // If verified, add checkmark - else do nothing
                       if (isVerified)
                         Icon(
                           Icons.check_circle,

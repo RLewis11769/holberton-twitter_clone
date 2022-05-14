@@ -4,22 +4,19 @@ import '../widgets/bottom_bar_menu.dart';
 import '../assets/user_list.dart';
 import './signin_screen.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // SafeArea fills space at top of screen so content starts below time/battery info
       body: SafeArea(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
+              // Always stays the same - profile image, search bar, settings icon
+              // Similar to notifications_screen but with search bar
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
@@ -29,6 +26,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           'http://static.wikia.nocookie.net/blossom/images/e/ed/Mange.png/revision/latest?cb=20140731004033'),
                       radius: 20,
                     )),
+                    // Near-identical to entry_field but with no props
                 Flexible(
                     child: TextField(
                   decoration: InputDecoration(
@@ -56,7 +54,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 )),
                 GestureDetector(
-                    // On tap of text, navigate to sign up screen
+                    // On tap of text, navigate to sign up screen as on notifications_screen and chats_screen
+                    // Not asked to do this but I wanted it - no other way to get to SignIn if home is HomeScreen
                     onTap: () {
                       Navigator.push(
                           context,
@@ -72,10 +71,18 @@ class _SearchScreenState extends State<SearchScreen> {
               ],
             ),
             Expanded(
+              // ListView builder to display search results from userList file
+              // 
               child: ListView.builder(
+                // itemCount required to be able to build list
+                // If itemBuilder has static info, makes identical number of items in itemCount
                   itemCount: userList.length,
+                  // context is BuildContext instance that lets builder know where it is in Widget Tree
+                  // Required information used in background
+                  // index of item in list based on itemCount
                   itemBuilder: (BuildContext context, int index) {
                     return UsersSearchResultsWidget(
+                      // Pass userList info at that key to each UsersSearchResultsWidget
                       name: userList[index]['name'],
                       username: userList[index]['username'],
                       imgUrl: userList[index]['imgUrl'],

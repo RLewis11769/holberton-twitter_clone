@@ -3,6 +3,7 @@ import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
 
 class ForgetPassword extends StatefulWidget {
+  // Not using state yet but will in future?
   const ForgetPassword({Key? key}) : super(key: key);
 
   @override
