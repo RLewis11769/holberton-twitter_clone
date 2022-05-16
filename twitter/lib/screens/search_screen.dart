@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/screens/home_screen.dart';
 import '../widgets/users_search_results_widget.dart';
 import '../widgets/bottom_bar_menu.dart';
-import './signin_screen.dart';
 import '../assets/user_list.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -60,7 +60,7 @@ class SearchScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SignIn()));
+                            builder: (context) => const HomeScreen()));
                   },
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),

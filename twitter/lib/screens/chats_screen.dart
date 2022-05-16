@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_bar_menu.dart';
-import './signin_screen.dart';
 
 class ChatsScreen extends StatelessWidget {
   const ChatsScreen({Key? key}) : super(key: key);
@@ -32,17 +31,8 @@ class ChatsScreen extends StatelessWidget {
                         .headline4!
                         .copyWith(color: Theme.of(context).primaryColorDark),
                   )),
-                  GestureDetector(
-                    // On tap of text, navigate to sign up screen
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignIn()));
-                    },
-                    child: const Icon(Icons.settings_outlined,
+                  const Icon(Icons.settings_outlined,
                         color: Colors.blue, size: 30),
-                  ),
                 ],
               ),
             ])),

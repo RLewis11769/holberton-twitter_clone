@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './signin_screen.dart';
 import '../widgets/bottom_bar_menu.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -32,18 +31,8 @@ class NotificationsScreen extends StatelessWidget {
                         .headline4!
                         .copyWith(color: Theme.of(context).primaryColorDark),
                   )),
-                  GestureDetector(
-                    // On tap of text, navigate to sign up screen
-                    // Not asked to do this but I wanted it - no other way to get to SignIn if home is HomeScreen
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignIn()));
-                    },
-                    child: const Icon(Icons.settings_outlined,
+                  const Icon(Icons.settings_outlined,
                         color: Colors.blue, size: 30),
-                  ),
                 ],
               ),
             ])),

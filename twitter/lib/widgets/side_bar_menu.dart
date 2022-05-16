@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import '../providers/auth_state.dart';
+import '../models/user.dart';
+import '../screens/signin_screen.dart';
 
-class SideBarMenu extends StatelessWidget {
+class SideBarMenu extends StatefulWidget {
   const SideBarMenu({Key? key}) : super(key: key);
 
+  @override
+  State<SideBarMenu> createState() => _SideBarMenuState();
+}
+
+class _SideBarMenuState extends State<SideBarMenu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -16,35 +24,55 @@ class SideBarMenu extends StatelessWidget {
             child: DrawerHeader(
               // Separate user info from navigation (don't think this is necessary but better org)
               // Besides DrawerHeader, everything else is ListTile
-              child: Column(
-                  // Override default center crossAxisAlignment to text align left
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // Default user image and all other info hardcoded
-                  children: [
-                    const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://www.clipartmax.com/png/full/5-55403_blank-avatar-profile-pic-icon-female.png'),
-                      radius: 35,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(0, 50, 0, 15),
-                      child: Text(
-                        'UserName',
-                        style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                            color: Theme.of(context).primaryColorLight),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: Text('0 Followers',
-                                style: Theme.of(context).textTheme.subtitle1)),
-                        Expanded(
-                            child: Text('0 Following',
-                                style: Theme.of(context).textTheme.subtitle1))
-                      ],
-                    ),
-                  ]),
+              child: FutureBuilder(
+                  future: Auth().getCurrentUserModel(),
+                  builder: (BuildContext context, AsyncSnapshot<CustomUser> snapshot) {
+                    if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
+                      return Column(
+                          // Override default center crossAxisAlignment to text align left
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          // Default user image and all other info hardcoded
+                          children: [
+                            const CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  'https://www.clipartmax.com/png/full/5-55403_blank-avatar-profile-pic-icon-female.png'),
+                              radius: 35,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(0, 50, 0, 15),
+                              child: Text(
+                                // Convert snapshot to UserModel
+                                '${snapshot.data?.displayName}',
+                                // 'User Name',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .primaryColorLight),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Text('${snapshot.data?.followers} Followers',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle1)),
+                                Expanded(
+                                    child: Text('${snapshot.data?.following} Following',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle1))
+                              ],
+                            ),
+                          ]);
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }),
             ),
           ),
           // These are the actual menu items - ideally they should be links but onTap does nothing
@@ -88,7 +116,15 @@ class SideBarMenu extends StatelessWidget {
           ),
           ListTile(
             title: const Text('Logout'),
-            onTap: () => {},
+            onTap: () => {
+              // Logout
+              Auth().logout(),
+              // Navigate back to SignIn screen
+              Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignIn()))
+            },
           ),
         ],
       ),

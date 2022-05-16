@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'providers/app_state.dart';
+import 'providers/auth_state.dart';
 import '../screens/home_screen.dart';
-// import '../screens/signin_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -13,10 +19,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return MultiProvider(
+        // List of providers to update/use state
         providers: [
           ChangeNotifierProvider(create: (_) => AppState()),
+          ChangeNotifierProvider(create: (_) => Auth()),
         ],
         child: MaterialApp(
           title: 'Twitter Clone',

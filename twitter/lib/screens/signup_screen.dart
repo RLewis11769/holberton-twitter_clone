@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../providers/auth_state.dart';
 import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
 
@@ -62,8 +63,6 @@ class _SignUp extends State<SignUp> {
         ),
         body: SingleChildScrollView(
             child: Container(
-                // // Specifically asked to give height of 88 but overflows container
-                //   height: 88,
                 padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
                 child: Form(
                     key: _formKey,
@@ -91,10 +90,42 @@ class _SignUp extends State<SignUp> {
                           isPassword: true,
                         ),
                         CustomFlatButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            String msg = await Auth().attemptSignUp(
+                                _nameController.text,
+                                _emailController.text,
+                                _passwordController.text,
+                                _confirmController.text);
+                            if (msg == 'Errors.none') {
+                              _showMessage(msg);
+                              Navigator.pop(context);
+                            } else {
+                              _showMessage(msg);
+                            }
+                          },
                           label: 'Sign up',
                         ),
                       ],
                     )))));
+  }
+
+  void _showMessage(String msg) {
+    final scaffold = ScaffoldMessenger.of(context);
+    String text = '';
+    if (msg == 'Errors.none') {
+      scaffold.showSnackBar(const SnackBar(
+        content: Text("Account Created!", textAlign: TextAlign.center),
+        backgroundColor: Colors.green,
+      ));
+    } else {
+      if (msg == 'Errors.weakError') text = "The password provided is too weak.";
+      if (msg == "Errors.matchError") text = "The provided passwords don't match";
+      if (msg == "Errors.existsError") text = "An account already exists with that email.";
+      if (msg == "Errors.error") text = "Failed to create account! Please try later.";
+      scaffold.showSnackBar(SnackBar(
+        content: Text(text, textAlign: TextAlign.center),
+        backgroundColor: Colors.red,
+      ));
+    }
   }
 }

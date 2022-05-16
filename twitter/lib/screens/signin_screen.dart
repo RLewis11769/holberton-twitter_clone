@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_state.dart';
+import '../providers/auth_state.dart';
 import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
+import './home_screen.dart';
 import './signup_screen.dart';
 import './forgot_password_screen.dart';
-import './home_screen.dart';
 
 class SignIn extends StatefulWidget {
   // Not using state yet but will in future?
@@ -73,14 +74,19 @@ class _SignIn extends State<SignIn> {
         ),
         CustomFlatButton(
           label: 'Submit',
-          onPressed: () {
-            // Set state to
-            Provider.of<AppState>(context, listen: false).setpageIndex = 0;
-            // Navigate to home screen
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-            );
+          onPressed: () async {
+            String msg = await Auth()
+                .attemptLogin(_emailController.text, _passwordController.text);
+            if (msg == 'Errors.none') {
+              _showMessage(msg);
+              Provider.of<AppState>(context, listen: false).setpageIndex = 0;
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HomeScreen()));
+            } else {
+              _showMessage(msg);
+            }
           },
         ),
         GestureDetector(
@@ -115,5 +121,24 @@ class _SignIn extends State<SignIn> {
             )),
       ],
     ))));
+  }
+
+  void _showMessage(String msg) {
+    final scaffold = ScaffoldMessenger.of(context);
+    String text = '';
+    if (msg == 'Errors.none') {
+      scaffold.showSnackBar(const SnackBar(
+        content: Text("Logged in successfully!", textAlign: TextAlign.center),
+        backgroundColor: Colors.green,
+      ));
+    } else {
+      if (msg == 'Errors.noUserError') text = "No user found for that email!";
+      if (msg == "Errors.wrongError") text = "Wrong password!";
+      if (msg == "Errors.error") text = "Failed to Login! Please try later.";
+      scaffold.showSnackBar(SnackBar(
+        content: Text(text, textAlign: TextAlign.center),
+        backgroundColor: Colors.red,
+      ));
+    }
   }
 }
