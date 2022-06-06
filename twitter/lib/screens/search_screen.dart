@@ -1,99 +1,96 @@
 import 'package:flutter/material.dart';
-import 'package:twitter/screens/home_screen.dart';
-import '../widgets/users_search_results_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:twitter/widgets/entry_field.dart';
+import '../models/user.dart';
+import '../providers/app_state.dart';
+import '../widgets/search_users.dart';
 import '../widgets/bottom_bar_menu.dart';
-import '../assets/user_list.dart';
+import 'home_screen.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  final _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    // init state
+    super.initState();
+    _searchController.addListener(() {
+      // set state
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    // dispose controllers
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final CustomUser currentUser = Provider.of<AppState>(context).currentUser;
+
     return Scaffold(
-      // SafeArea fills space at top of screen so content starts below time/battery info
-      body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              // Always stays the same - profile image, search bar, settings icon
-              // Similar to notifications_screen but with search bar
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                    padding: const EdgeInsets.fromLTRB(10, 20, 20, 20),
-                    child: const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'http://static.wikia.nocookie.net/blossom/images/e/ed/Mange.png/revision/latest?cb=20140731004033'),
-                      radius: 20,
-                    )),
-                // Near-identical to entry_field but with no props
-                Flexible(
-                    child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search...',
-                    // Background and color
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    // Hint/placeholder text
-                    hintStyle: TextStyle(
-                        color: Theme.of(context).primaryColorLight,
-                        fontSize: 20),
-                    // Padding around text itself within field
-                    contentPadding: const EdgeInsets.fromLTRB(30, 15, 0, 15),
-                    // Border around field
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: (Colors.grey[200])!),
-                    ),
-                    // Border around field when focused
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(
-                          color: Theme.of(context).primaryColor, width: 2),
-                    ),
-                  ),
-                )),
-                GestureDetector(
-                  // On tap of text, navigate to sign up screen as on notifications_screen and chats_screen
-                  // Not asked to do this but I wanted it - no other way to get to SignIn if home is HomeScreen
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 20),
-                    child: const Icon(Icons.settings_outlined,
-                        color: Colors.blue, size: 30),
-                  ),
-                ),
-              ],
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          bottomOpacity: 0.0,
+          elevation: 0.0,
+          leading: Padding(
+            padding: const EdgeInsets.all(5),
+            child: CircleAvatar(
+                backgroundImage: NetworkImage(currentUser.imageUrl),
+                radius: 50,
             ),
-            Expanded(
-              // ListView builder to display search results from userList file
-              //
-              child: ListView.builder(
-                  // itemCount required to be able to build list
-                  // If itemBuilder has static info, makes identical number of items in itemCount
-                  itemCount: userList.length,
-                  // context is BuildContext instance that lets builder know where it is in Widget Tree
-                  // Required information used in background
-                  // index of item in list based on itemCount
-                  itemBuilder: (BuildContext context, int index) {
-                    return UsersSearchResultsWidget(
-                      // Pass userList info at that key to each UsersSearchResultsWidget
-                      name: userList[index]['name'],
-                      username: userList[index]['username'],
-                      imgUrl: userList[index]['imgUrl'],
-                      isVerified: userList[index]['isVerified'],
-                    );
-                  }),
+          ),
+          title: TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              hintText: 'Search...',
+              // Background and color
+              filled: true,
+              fillColor: Colors.grey[200],
+              // Hint/placeholder text
+              hintStyle: TextStyle(
+                  color: Theme.of(context).primaryColorLight, fontSize: 20),
+              // Padding around text itself within field
+              contentPadding: const EdgeInsets.fromLTRB(30, 15, 0, 15),
+              // Border around field
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: (Colors.grey[200])!),
+              ),
+              // Border around field when focused
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide:
+                    BorderSide(color: Theme.of(context).primaryColor, width: 2),
+              ),
+            ),
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings_outlined,
+                  color: Colors.blue, size: 35),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()));
+              },
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: const BottomMenuBar(),
+        // Body of page is results from user search
+        body: SearchUsers(
+          searchText: _searchController.text,
+        ),
+        bottomNavigationBar: const BottomMenuBar(),
     );
   }
 }

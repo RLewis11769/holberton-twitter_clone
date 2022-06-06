@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:uuid/uuid.dart';
+import '../utils/utils.dart';
 import '../models/user.dart';
 
 enum Errors {
@@ -15,8 +17,8 @@ enum Errors {
 
 class Auth extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // FirebaseAuth get auth => _auth;
 
+  // Set up capability to convert Firebase data to a CustomUser
   final usersRef =
       FirebaseFirestore.instance.collection('users').withConverter<CustomUser>(
             fromFirestore: (snapshot, _) {
@@ -27,7 +29,7 @@ class Auth extends ChangeNotifier {
             toFirestore: (user, _) => user.toJson(),
           );
 
-  handleException(e) {
+  String handleException(e) {
     // This should be Error type but can't get it working so casting all Errors to string
     String _status;
     switch (e.code) {
@@ -67,14 +69,19 @@ class Auth extends ChangeNotifier {
       );
       User? signedInUser = userCredentials.user;
       if (signedInUser != null) {
-        // Using toJson would be better but this works
+        // Setting default values for user
         Map<String, dynamic> userMap = {
-          'key': signedInUser.uid,
+          'key': const Uuid().v4(),
           'userID': signedInUser.uid,
           'email': signedInUser.email,
           'userName': name,
-          'displayName': name,
-          'imageUrl': '',
+          'displayName': generateRandomString(8),
+          'bio': 'No bio available',
+          'location': 'No location available',
+          'dateJoined': DateTime.now(),
+          'imageUrl': 'https://picsum.photos/100/100',
+          'coverImgUrl':
+              'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
           'isVerified': false,
           'followers': 0,
           'following': 0,
@@ -112,8 +119,11 @@ class Auth extends ChangeNotifier {
   }
 
   Future<CustomUser> getCurrentUserModel() async {
-    final snapshot = await usersRef.doc(_auth.currentUser!.uid).get();
+    // Get the user from Firebase users collection
+    final snapshot = await Auth().usersRef.doc(_auth.currentUser!.uid).get();
+    // Convert data to JSON format
     final user = snapshot.data()?.toJson();
+    // Convert JSON to CustomUser - there is no way to convert from snapshot to CustomUser directly
     return CustomUser.fromJson(user!);
   }
 }

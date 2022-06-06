@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1051899152849",
+    "project_id": "holberton-twitter-clone",
+    "storage_bucket": "holberton-twitter-clone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051899152849:android:7968eee4dfe5e058ef78f0",
+        "android_client_info": {
+          "package_name": "com.example.twitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051899152849-8h9op83tedtbt3ucspp52ajn8ivbbkm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzxnMuK1SPcQ1TWnG2jsUrzlYcyRD5TvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051899152849-8h9op83tedtbt3ucspp52ajn8ivbbkm4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1051899152849-a76prt3c0669vioajms91nbklr6d5su9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.twitter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051899152849:android:9fef9de3e23b7f43ef78f0",
+        "android_client_info": {
+          "package_name": "com.rlewis11769.holberton_twitter_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051899152849-8h9op83tedtbt3ucspp52ajn8ivbbkm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzxnMuK1SPcQ1TWnG2jsUrzlYcyRD5TvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051899152849-8h9op83tedtbt3ucspp52ajn8ivbbkm4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1051899152849-a76prt3c0669vioajms91nbklr6d5su9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.twitter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

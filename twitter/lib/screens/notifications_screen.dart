@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/user.dart';
+import '../providers/app_state.dart';
+import './home_screen.dart';
 import '../widgets/bottom_bar_menu.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -7,6 +11,8 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CustomUser currentUser = Provider.of<AppState>(context).currentUser;
+
     return Scaffold(
       body: SafeArea(
           child: Column(children: [
@@ -16,13 +22,12 @@ class NotificationsScreen extends StatelessWidget {
               // Always stays the same - profile image, title, settings icon
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'http://static.wikia.nocookie.net/blossom/images/e/ed/Mange.png/revision/latest?cb=20140731004033'),
-                    radius: 20,
-                  ),
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(currentUser.imageUrl),
+                      radius: 25,
+                    ),
                   Flexible(
                       child: Text(
                     'Notifications',
@@ -31,8 +36,20 @@ class NotificationsScreen extends StatelessWidget {
                         .headline4!
                         .copyWith(color: Theme.of(context).primaryColorDark),
                   )),
-                  const Icon(Icons.settings_outlined,
-                        color: Colors.blue, size: 30),
+                  GestureDetector(
+                  // On tap of text, navigate to sign up screen as on notifications_screen and chats_screen
+                  // Not asked to do this but I wanted it - no other way to get to SignIn if home is HomeScreen
+                  onTap: () {
+                    Provider.of<AppState>(context, listen: false).setpageIndex =
+                      0;
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
+                  },
+                  child: const Icon(Icons.settings_outlined,
+                        color: Colors.blue, size: 35),
+                ),
                 ],
               ),
             ])),

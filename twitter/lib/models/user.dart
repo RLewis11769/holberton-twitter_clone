@@ -5,9 +5,12 @@ class CustomUser {
   String email;
   String userName;
   String displayName;
+  String bio;
+  String location;
+  DateTime dateJoined;
   String imageUrl;
+  String coverImgUrl;
   bool isVerified;
-  // Making optional fields for now
   int followers;
   int following;
   List<String> followersList;
@@ -20,7 +23,11 @@ class CustomUser {
     required this.email,
     required this.userName,
     required this.displayName,
+    required this.bio,
+    required this.location,
+    required this.dateJoined,
     required this.imageUrl,
+    required this.coverImgUrl,
     required this.isVerified,
     // Can probably just find length of list rather than passing in - we'll see
     required this.followers,
@@ -29,30 +36,38 @@ class CustomUser {
     required this.followingList,
   });
 
-  // named constructor fromJson
+  // named constructor fromJson that converts Firebase data to a CustomUser
   factory CustomUser.fromJson(Map<dynamic, dynamic> map) => CustomUser(
         key: map['key'],
         userID: map['userID'],
         email: map['email'],
         userName: map['userName'],
         displayName: map['displayName'],
+        bio: map['bio'],
+        location: map['location'],
+        dateJoined: DateTime.fromMillisecondsSinceEpoch(
+            map['dateJoined'].millisecondsSinceEpoch),
         imageUrl: map['imageUrl'],
+        coverImgUrl: map['coverImgUrl'],
         isVerified: map['isVerified'],
         followers: map['followers'],
         following: map['following'],
-        // Probably incorrect
         followersList: List<String>.from(map['followersList']),
         followingList: List<String>.from(map['followingList']),
       );
 
-  // instance method toJson that returns a Map<String, dynamic>
+  // instance method that converts data retrieved from Firestore into JSON format
   Map<String, Object?> toJson() => {
         "key": key,
         "userID": userID,
         "email": email,
         "userName": userName,
         "displayName": displayName,
+        "bio": bio,
+        "location": location,
+        "dateJoined": dateJoined,
         "imageUrl": imageUrl,
+        "coverImgUrl": coverImgUrl,
         "isVerified": isVerified,
         "followers": followers,
         "following": following,
